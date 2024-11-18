@@ -9,7 +9,7 @@ const Sidebar = () => {
   };
 
   return (
-    <nav className="max-w-xs h-screen bg-amber-100 text-sky-900 py-16 px-6">
+    <nav className="w-3/12 bg-amber-100 text-sky-900 py-16 px-6">
       <h2 className="font-bold text-xl mb-6">Your Projects</h2>
       <button
         className="px-8 border border-sky-900 rounded-md p-2"
