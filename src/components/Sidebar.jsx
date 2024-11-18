@@ -1,25 +1,22 @@
-import { useState } from "react";
-
-const Sidebar = () => {
-  const [projects, setProjects] = useState([]);
-  const [addProject, setAddProject] = useState(false);
-
-  const handleClick = () => {
-    setAddProject((prevAddProject) => !prevAddProject);
-  };
-
+const Sidebar = ({ data, onAdd, onView }) => {
   return (
     <nav className="w-3/12 bg-amber-100 text-sky-900 py-16 px-6">
-      <h2 className="font-bold text-xl mb-6">Your Projects</h2>
+      <h2 className="font-bold text-2xl mb-6">Your Projects</h2>
       <button
-        className="px-8 border border-sky-900 rounded-md p-2"
-        onClick={handleClick}
+        className="text-white border bg-cyan-600 border-cyan-600 rounded-md py-2 px-4"
+        onClick={onAdd}
       >
         + Add Project
       </button>
-      <ul>
-        {projects.map((project, index) => {
-          <li key={index}>{project}</li>;
+      <ul className="font-medium mt-10 ml-2">
+        {data.map((project, index) => {
+          return (
+            <li key={index}>
+              <button className="pb-4" onClick={() => onView(index)}>
+                {project.title}
+              </button>
+            </li>
+          );
         })}
       </ul>
     </nav>
