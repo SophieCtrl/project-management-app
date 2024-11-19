@@ -18,6 +18,10 @@ function App() {
     setViewedProject(null);
   };
 
+  const handleCancelAddProject = () => {
+    setAdding(false);
+  };
+
   const handleViewProject = (index) => {
     setViewedProject(projectData[index]);
     setAdding(false);
@@ -31,11 +35,17 @@ function App() {
       date: dueDateRef.current.value,
     };
 
-    setProjectData((prevProjectData) => [newEntry, ...prevProjectData]);
+    setProjectData((prevProjectData) => {
+      const updatedProjectData = [newEntry, ...prevProjectData];
+      updatedProjectData.sort((a, b) => new Date(a.date) - new Date(b.date));
+      return updatedProjectData;
+    });
 
     titleRef.current.value = "";
     descriptionRef.current.value = "";
     dueDateRef.current.value = "";
+
+    setViewedProject(newEntry);
   };
 
   return (
@@ -45,22 +55,28 @@ function App() {
         onAdd={handleAddProject}
         onView={handleViewProject}
       />
+
       {!projectData.length && !adding ? (
         <StartScreen onAdd={handleAddProject} />
-      ) : null}
-      {adding && (
+      ) : undefined}
+
+      {adding && !viewedProject ? (
         <ProjectForm
           data={projectData}
           onSubmit={handleFormSubmit}
+          onCancel={handleCancelAddProject}
           refs={{
             title: titleRef,
             description: descriptionRef,
             dueDate: dueDateRef,
           }}
         />
-      )}
+      ) : undefined}
 
       {viewedProject && <ProjectDetails project={viewedProject} />}
+      {!adding && !viewedProject && projectData.length ? (
+        <ProjectDetails project={projectData[0]} />
+      ) : undefined}
     </div>
   );
 }

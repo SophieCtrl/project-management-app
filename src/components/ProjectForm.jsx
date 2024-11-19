@@ -1,8 +1,15 @@
-const ProjectForm = ({ onSubmit, refs: { title, description, dueDate } }) => {
+const ProjectForm = ({
+  onSubmit,
+  onCancel,
+  refs: { title, description, dueDate },
+}) => {
   return (
     <form className="w-9/12 ml-16 py-16 px-6" onSubmit={onSubmit}>
       <div className="w-10/12 flex justify-end">
-        <button className="text-cyan-600 rounded-md px-8 py-2 mr-2 mb-12">
+        <button
+          className="text-cyan-600 rounded-md px-8 py-2 mr-2 mb-12"
+          onClick={onCancel}
+        >
           Cancel
         </button>
         <input
