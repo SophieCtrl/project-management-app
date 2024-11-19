@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import Sidebar from "./components/Sidebar";
 import ProjectForm from "./components/ProjectForm";
 import ProjectDetails from "./components/ProjectDetails";
+import StartScreen from "./components/StartScreen";
 
 function App() {
   const [projectData, setProjectData] = useState([]);
@@ -44,6 +45,9 @@ function App() {
         onAdd={handleAddProject}
         onView={handleViewProject}
       />
+      {!projectData.length && !adding ? (
+        <StartScreen onAdd={handleAddProject} />
+      ) : null}
       {adding && (
         <ProjectForm
           data={projectData}
