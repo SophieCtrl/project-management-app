@@ -22,21 +22,25 @@ const ProjectDetails = ({ project, onDelete }) => {
   console.log("Rendering ProjectDetails, tasks:", tasks);
 
   return (
-    <div className="w-9/12 ml-16 py-16 px-6 text-sky-900">
+    <div className="w-9/12 ml-16 max-sm:ml-6 py-16 max-sm:py-8 px-6 text-sky-900">
       <section id="project">
         <div className="flex justify-between">
-          <h1 className="text-2xl font-bold mb-4">{project.title}</h1>
+          <h1 className="text-2xl max-sm:text-base font-bold">
+            {project.title}
+          </h1>
           <button
-            className="text-cyan-600 px-4 py-1 mr-6"
+            className="max-sm:text-xs text-cyan-600 mr-6"
             onClick={() => onDelete(project)}
           >
             Delete Project
           </button>
         </div>
-        <p className="text-gray-400 mb-6 text-sm">Due date: {project.date}</p>
-        <p className="mb-4">{project.description}</p>
+        <p className="text-gray-400 mb-6 text-sm max-sm:text-xs mt-4">
+          Due date: {project.date}
+        </p>
+        <p className="max-sm:text-sm mb-4">{project.description}</p>
       </section>
-      <hr className="my-6 border-2 text-gray-400" />
+      <hr className="my-6 border text-gray-400" />
       <Task
         data={tasks}
         onAdd={handleAddTask}

@@ -63,7 +63,7 @@ function App() {
   };
 
   return (
-    <div className="flex h-screen bg-white">
+    <div className="flex h-screen bg-white xs:text-xs">
       <Sidebar
         data={projectData}
         onAdd={handleAddProject}

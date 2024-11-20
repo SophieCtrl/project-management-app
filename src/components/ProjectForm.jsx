@@ -4,8 +4,11 @@ const ProjectForm = ({
   refs: { title, description, dueDate },
 }) => {
   return (
-    <form className="w-9/12 ml-16 py-16 px-6" onSubmit={onSubmit}>
-      <div className="w-10/12 flex justify-end">
+    <form
+      className="w-9/12 max-sm:text-sm ml-16 max-sm:ml-6 py-16 max-sm:py-8 px-6 max-sm:px-0"
+      onSubmit={onSubmit}
+    >
+      <div className="w-10/12 flex justify-end max-sm:text-xs">
         <button
           className="text-cyan-600 rounded-md px-8 py-2 mr-2 mb-12"
           onClick={onCancel}
