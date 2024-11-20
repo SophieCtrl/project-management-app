@@ -19,6 +19,8 @@ const ProjectDetails = ({ project, onDelete }) => {
     });
   };
 
+  console.log("Rendering ProjectDetails, tasks:", tasks);
+
   return (
     <div className="w-9/12 ml-16 py-16 px-6 text-sky-900">
       <section id="project">

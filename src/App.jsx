@@ -29,7 +29,7 @@ function App() {
 
   const handleDeleteProject = (project) => {
     const projectIndex = projectData.findIndex(
-      (proj) => proj.title == project.title
+      (proj) => proj.title === project.title
     );
 
     setProjectData((prevProjectData) => {
@@ -38,7 +38,7 @@ function App() {
       return updatedData;
     });
 
-    setViewedProject(projectData[0]);
+    setViewedProject(projectData[projectIndex - 1 || projectIndex + 1]);
   };
 
   const handleFormSubmit = (e) => {
