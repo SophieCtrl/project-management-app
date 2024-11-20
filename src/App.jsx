@@ -20,6 +20,7 @@ function App() {
 
   const handleCancelAddProject = () => {
     setAdding(false);
+    setViewedProject(null);
   };
 
   const handleViewProject = (index) => {
@@ -38,7 +39,7 @@ function App() {
       return updatedData;
     });
 
-    setViewedProject(projectData[projectIndex - 1 || projectIndex + 1]);
+    setViewedProject(null);
   };
 
   const handleFormSubmit = (e) => {
@@ -63,14 +64,14 @@ function App() {
   };
 
   return (
-    <div className="flex h-screen bg-white xs:text-xs">
+    <div className="flex h-screen bg-white">
       <Sidebar
         data={projectData}
         onAdd={handleAddProject}
         onView={handleViewProject}
       />
 
-      {!projectData.length && !adding ? (
+      {!adding && !viewedProject ? (
         <StartScreen onAdd={handleAddProject} />
       ) : undefined}
 
@@ -93,7 +94,7 @@ function App() {
           onDelete={handleDeleteProject}
         />
       )}
-      {!adding && !viewedProject && projectData.length ? (
+      {!adding && !viewedProject && viewedProject ? (
         <ProjectDetails
           project={projectData[0]}
           onDelete={handleDeleteProject}

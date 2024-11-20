@@ -1,4 +1,5 @@
 import notePad from "../assets/no-projects.png";
+import Button from "./Button";
 
 const StartScreen = ({ onAdd }) => {
   return (
@@ -7,13 +8,8 @@ const StartScreen = ({ onAdd }) => {
       <p className="text-xl max-sm:text-base font-bold mb-4">
         No Project Selected
       </p>
-      <p>Select a project or get started with a new one.</p>
-      <button
-        className="max-sm:text-xs text-white border bg-cyan-600 border-cyan-600 rounded-md py-2 px-4 mt-8"
-        onClick={onAdd}
-      >
-        Create new project
-      </button>
+      <p className="mb-8">Select a project or get started with a new one.</p>
+      <Button onClick={onAdd}>Create new project</Button>
     </div>
   );
 };
