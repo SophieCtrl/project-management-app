@@ -27,6 +27,20 @@ function App() {
     setAdding(false);
   };
 
+  const handleDeleteProject = (project) => {
+    const projectIndex = projectData.findIndex(
+      (proj) => proj.title == project.title
+    );
+
+    setProjectData((prevProjectData) => {
+      const updatedData = [...prevProjectData];
+      updatedData.splice(projectIndex, 1);
+      return updatedData;
+    });
+
+    setViewedProject(projectData[0]);
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const newEntry = {
@@ -73,9 +87,17 @@ function App() {
         />
       ) : undefined}
 
-      {viewedProject && <ProjectDetails project={viewedProject} />}
+      {viewedProject && (
+        <ProjectDetails
+          project={viewedProject}
+          onDelete={handleDeleteProject}
+        />
+      )}
       {!adding && !viewedProject && projectData.length ? (
-        <ProjectDetails project={projectData[0]} />
+        <ProjectDetails
+          project={projectData[0]}
+          onDelete={handleDeleteProject}
+        />
       ) : undefined}
     </div>
   );

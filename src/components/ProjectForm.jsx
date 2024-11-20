@@ -46,6 +46,7 @@ const ProjectForm = ({
           ref={dueDate}
           type="date"
           required
+          min={new Date().toISOString().split("T")[0]}
           className="w-10/12 px-2 border border-amber-100 bg-amber-100 rounded-md p-1 mt-1 mb-2"
         />
       </div>
