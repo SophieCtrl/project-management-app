@@ -11,7 +11,10 @@ const Sidebar = ({ data, onAdd, onView }) => {
         {data.map((project, index) => {
           return (
             <li key={index}>
-              <button className="pb-4" onClick={() => onView(index)}>
+              <button
+                className="hover:text-cyan-600 pb-4"
+                onClick={() => onView(index)}
+              >
                 {project.title}
               </button>
             </li>

@@ -61,7 +61,31 @@ function App() {
     dueDateRef.current.value = "";
 
     setViewedProject(newEntry);
+    setAdding(false);
   };
+
+  let content;
+
+  if (adding) {
+    content = (
+      <ProjectForm
+        data={projectData}
+        onSubmit={handleFormSubmit}
+        onCancel={handleCancelAddProject}
+        refs={{
+          title: titleRef,
+          description: descriptionRef,
+          dueDate: dueDateRef,
+        }}
+      />
+    );
+  } else if (!adding && !viewedProject) {
+    content = <StartScreen onAdd={handleAddProject} />;
+  } else if (viewedProject) {
+    content = (
+      <ProjectDetails project={viewedProject} onDelete={handleDeleteProject} />
+    );
+  }
 
   return (
     <div className="flex h-screen bg-white">
@@ -71,35 +95,7 @@ function App() {
         onView={handleViewProject}
       />
 
-      {!adding && !viewedProject ? (
-        <StartScreen onAdd={handleAddProject} />
-      ) : undefined}
-
-      {adding && !viewedProject ? (
-        <ProjectForm
-          data={projectData}
-          onSubmit={handleFormSubmit}
-          onCancel={handleCancelAddProject}
-          refs={{
-            title: titleRef,
-            description: descriptionRef,
-            dueDate: dueDateRef,
-          }}
-        />
-      ) : undefined}
-
-      {viewedProject && (
-        <ProjectDetails
-          project={viewedProject}
-          onDelete={handleDeleteProject}
-        />
-      )}
-      {!adding && !viewedProject && viewedProject ? (
-        <ProjectDetails
-          project={projectData[0]}
-          onDelete={handleDeleteProject}
-        />
-      ) : undefined}
+      {content}
     </div>
   );
 }
