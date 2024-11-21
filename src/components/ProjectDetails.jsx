@@ -7,6 +7,10 @@ const ProjectDetails = ({ project, onDelete }) => {
 
   const handleAddTask = () => {
     const newValue = taskRef.current.value;
+    if (newValue.trim() === "") {
+      return;
+    }
+
     setTasks((prevTasks) => [newValue, ...prevTasks]);
     taskRef.current.value = "";
   };
@@ -18,8 +22,6 @@ const ProjectDetails = ({ project, onDelete }) => {
       return updatedTasks;
     });
   };
-
-  console.log("Rendering ProjectDetails, tasks:", tasks);
 
   return (
     <div className="w-9/12 ml-16 max-sm:ml-6 py-16 max-sm:py-8 px-6 text-sky-900">

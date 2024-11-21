@@ -2,19 +2,20 @@ import { forwardRef } from "react";
 
 const Task = forwardRef(({ data, onAdd, onClear }, ref) => {
   return (
-    <section id="tasks">
+    <section id="tasks" className="text-sky-900">
       <h2 className="text-xl max-sm:text-base font-bold mb-4">Tasks</h2>
       <span>
         <input
           type="text"
           ref={ref}
+          required
           className="w-6/12 max-sm:text-sm border border-amber-100 bg-amber-100 rounded-md px-2 py-1 mt-1 mb-2 mr-4"
         />
         <button onClick={onAdd} className="max-sm:text-xs text-cyan-600">
           Add Task
         </button>
       </span>
-      {data.length > 0 && (
+      {data.length > 0 ? (
         <div className="w-12/12 max-sm:text-sm border border-amber-100 bg-amber-100 rounded-md py-2 px-4 mt-4 mb-2 mr-4">
           <ul>
             {data.map((task, index) => {
@@ -32,6 +33,8 @@ const Task = forwardRef(({ data, onAdd, onClear }, ref) => {
             })}
           </ul>
         </div>
+      ) : (
+        <p className="mt-4">This project does not have any tasks yet.</p>
       )}
     </section>
   );

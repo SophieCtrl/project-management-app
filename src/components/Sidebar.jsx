@@ -12,7 +12,7 @@ const Sidebar = ({ data, onAdd, onView }) => {
           return (
             <li key={index}>
               <button
-                className="hover:text-cyan-600 pb-4"
+                className="pb-4 text-cyan-600"
                 onClick={() => onView(index)}
               >
                 {project.title}
